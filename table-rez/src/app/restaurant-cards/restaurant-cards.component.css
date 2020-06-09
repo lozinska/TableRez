@@ -1,0 +1,21 @@
+.container{
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 20px;
+  padding: 0 ;
+}
+.margin{
+  margin-top:20px;
+}
+.restaurant{
+  width: 15%;
+  text-align: center;
+  margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
+  float: left;
+  margin-right: 20px;
+}
+.button{
+  background-color: orange;
+  border-color: blanchedalmond;
+}

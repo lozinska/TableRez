@@ -1,3 +1,10 @@
-<h2>{{restaurant.restaurantName | uppercase}} Details</h2>
-<div><span>name:</span>{{restaurant.restaurantName}}</div>
-<div><span>id:</span>{{restaurant.restaurantId}}</div>
+<h2>Restaurants</h2>
+<ul class="restaurants">
+  <li *ngFor="let restaurant of restaurants"
+  [class.selected]="restaurant===selectedRestaurant"
+  (click)="onSelect(restaurant)">
+    <span class="badge">{{restaurant.id}}</span>{{restaurant.name}}
+  </li>
+</ul>
+
+<app-restaurant-detail [restaurant]="selectedRestaurant"></app-restaurant-detail>
