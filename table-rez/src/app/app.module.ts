@@ -13,6 +13,8 @@ import { MatListModule} from '@angular/material/list';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,14 +25,15 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    BrowserModule,
+    MatButtonModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

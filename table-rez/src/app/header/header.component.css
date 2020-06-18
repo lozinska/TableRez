@@ -1,7 +1,3 @@
-.header{
-background-color: orange;
-color: aliceblue;
-}
 .space{
   flex:1 1 auto;
 }
@@ -11,5 +7,4 @@ color: aliceblue;
   border: none;
   padding: 0!important;
   cursor: pointer;
-  color: aliceblue;
 }
