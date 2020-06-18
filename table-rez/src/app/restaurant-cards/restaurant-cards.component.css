@@ -2,20 +2,23 @@
   height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
-  margin: 20px;
   padding: 0 ;
 }
-.margin{
-  margin-top:20px;
-}
+
 .restaurant{
   width: 15%;
   text-align: center;
   margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
   float: left;
-  margin-right: 20px;
+  margin-left: 20px;
 }
-.button{
-  background-color: orange;
-  border-color: blanchedalmond;
+.title{
+  width:100%;
+  border-radius: 4px;
+  font-size: xx-large;
+  line-height: normal;
+  padding: 5px;
+}
+.image{
+  background-size: cover;
 }
