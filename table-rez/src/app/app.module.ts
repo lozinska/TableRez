@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,9 @@ import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from "@angular/material/input";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +26,18 @@ import {MatButtonModule} from '@angular/material/button';
     RestaurantDetailComponent,
     RestaurantCardsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterComponent
   ],
   imports: [
     MatButtonModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule
