@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
@@ -35,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
