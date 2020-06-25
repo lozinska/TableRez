@@ -1,6 +1,8 @@
 <mat-toolbar class="header"color='primary'>
-  <img class = "img" width="20" height="20" src="./assets/logo.jpeg">
-  <span class="space"><button class="button" mat-raised-button color='primary' routerLink="/">TableRez</button></span>
-  <button class="button" mat-raised-button color='primary' routerLink="/register">Register</button>
-  <button class="button" mat-raised-button color='primary'>Login</button>
-  </mat-toolbar>
+  <img class = "img" width="30" height="30" src="./assets/logo.jpeg">&nbsp;
+  {{title}}
+  <span class="space"></span>
+
+  <button class="button" routerLink="/register" mat-raised-button color='primary'>Register</button>
+  <button class="button" routerLink="/login" mat-raised-button color='primary'>Login</button>
+</mat-toolbar>

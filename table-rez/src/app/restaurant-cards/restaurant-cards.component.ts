@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {Restaurant} from '../restaurant';
-import {RestaurantService} from '../restaurant.service';
+import {Restaurant} from '../models/restaurant';
+import {RestaurantService} from '../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurant-cards',
@@ -8,17 +8,24 @@ import {RestaurantService} from '../restaurant.service';
   styleUrls: ['./restaurant-cards.component.css']
 })
 export class RestaurantCardsComponent implements OnInit {
-  @Input() restaurant: Restaurant;
-  restaurants: Restaurant[];
-  selectedRestaurant: Restaurant;
+  @Input() restaurants: any[]=[];
+  //restaurants: Restaurant[]=[];
+  selectedRestaurant: any={id:null,name:'',email:''};
+
+
   constructor(private restaurantService:RestaurantService) { }
   ngOnInit() {
     this.getRestaurants();
   }
 
-  getRestaurants():void{
-    this.restaurantService.getRestaurants()
-    .subscribe(restaurants=>this.restaurants=restaurants);
+  private getRestaurants(){
+    this.restaurantService.getRestaurants().then((response:any)=>{
+      this.restaurants=response.map((restaurant)=>{
+        restaurant.body=restaurant.email;
+        restaurant.header=restaurant.name;
+        return restaurant;
+      })
+    })
   }
 
 }
