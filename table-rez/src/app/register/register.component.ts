@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import {MatFormFieldModule} from '@angular/material/form-field';
-// import {MatInputModule } from "@angular/material/input";
+import { AuthService} from "../auth.service";
 import { FormBuilder, Validators, EmailValidator } from "@angular/forms";
 
 @Component({
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   form;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private auth : AuthService) {
       this.form=fb.group({
           firstName:['', Validators.required],
           lastName:['', Validators.required],
@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
 
    onSubmit(){
      console.log(this.form.errors);
+     this.auth.register(this.form.value);
    }
 
    

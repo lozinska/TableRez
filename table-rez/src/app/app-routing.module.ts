@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
-import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
 
 
