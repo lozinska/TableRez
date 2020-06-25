@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
 import { RegisterComponent } from './register/register.component';
-import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 
 
 const routes: Routes = [

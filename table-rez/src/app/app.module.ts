@@ -27,7 +27,7 @@ import { RegisterComponent } from './register/register.component';
     RestaurantCardsComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
     RegisterComponent
   ],
   imports: [
