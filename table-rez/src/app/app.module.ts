@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -16,9 +16,11 @@ import {HttpClientModule} from '@angular/common/http';
 import { CustomerService } from './services/customer.service';
 import { AuthService } from './services/auth.service';
 import {LoginComponent} from './login/login.component';
-import { RouterModule } from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule } from "@angular/material/input";
+import { RegisterComponent } from './register/register.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,17 @@ import {ReactiveFormsModule} from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     LoginComponent
+    RegisterComponent
   ],
   imports: [
     MatButtonModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule,
