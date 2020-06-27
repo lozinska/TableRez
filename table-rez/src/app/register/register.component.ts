@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {CustomerService} from '../services/customer.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,EmailValidator } from '@angular/forms';
+import { AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 registerForm:FormGroup;
 passwordCheck=true;
+
 
 currentCustomer: any = {id: null, firstName: '', lastName: '', phone:'',email:'',password:''};
   constructor(
@@ -24,7 +26,9 @@ currentCustomer: any = {id: null, firstName: '', lastName: '', phone:'',email:''
       lastName:['',Validators.required],
       phone:['',Validators.required],
       email:['',Validators.required],
-      password:['',Validators.required,Validators.minLength(6)]
+      password:['',Validators.required,Validators.minLength(6)],
+        confirmPassword:['', Validators.required]
+      }, {validator:matchingFields('password','confirmPassword')});
     })
   }
 
@@ -46,4 +50,19 @@ if(!inputPass.value.match(paswd)){
   this.passwordCheck=false;
 }
 }
+  
+}
+function matchingFields(field1,field2){
+  return form => {
+    if(form.controls[field1].value !== form.controls[field2].value)
+    return {mismatchedFields:true}
+  }     
+}
+
+function emailValid(){
+  return control => {
+    var regex=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regex.test(control.value) ? null:{invalidEmail:true}
+  }
 }
