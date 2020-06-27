@@ -8,7 +8,7 @@ import {LoginModel} from '../models/loginModel';
 })
 export class AuthService {
 
-  constructor(private customerService:CustomerService) { }
+/*  constructor(private customerService:CustomerService) { }
   registerUser(user:RegisterModel){
     this.customerService.post('users/register',user)
     .pipe(map((res:any)=>res.json()));
@@ -16,5 +16,5 @@ export class AuthService {
   authenticatedUser(user:LoginModel){
     this.customerService.post('users/login',user)
     .pipe(map((res:any)=>res.json()));
-  }
+  }*/
 }

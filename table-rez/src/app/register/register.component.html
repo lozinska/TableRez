@@ -1,41 +1,41 @@
-<br>
-<div style="display: flex; justify-content: center;">
-
-<form [formGroup]=form (ngSubmit)="onSubmit()">
-    
-    <mat-card class="example-container">
-    <h2 align="center">User Registration</h2>
+<mat-card class="example-container">    
+<h2 class="col-md-6" align="center">User Registration</h2>
     <p align="center">Fill out all the required fields:</p>
+    <form [formGroup]="registerForm" action="register.component.ts">
         <p align="center">
-            <mat-form-field   hintLabel="Minimum 2 characters" appearance="outline">
-                <mat-label>First (Given) Name</mat-label>
-                    <input matInput #firstName pattern=".{2,30}"  type="text" maxlength="30" placeholder="Ex. John" formControlName="firstName" autofocus="on">
+            <mat-form-field  type="text" hintLabel="Max 30 characters" appearance="outline">
+                <mat-label for="firstName">First (Given) Name</mat-label>
+                    <input matInput formControlName="firstName" #firstName pattern=".{2,30}"  type="text" maxlength="30" placeholder="Ex. John">
                 <mat-hint align="end">{{firstName.value?.length || 0}}/30</mat-hint>
             </mat-form-field>
         <span style="margin-left: 3em;"></span> 
                 <mat-form-field hintLabel="Minimum 2 characters" appearance="outline" >
                     <mat-label>Last (Family) Name</mat-label>
-                        <input matInput #lastName type="text" pattern=".{2,30}" maxlength="30" placeholder="Ex. John" formControlName="lastName">
+                        <input matInput formControlName="lastName" #lastName type="text" pattern=".{2,30}" maxlength="30" placeholder="Ex. John">
+        
+
                     <mat-hint align="end">{{lastName.value?.length || 0}}/30</mat-hint>
                 </mat-form-field>
             </p>
             <p align="center">
                 <mat-form-field hintLabel="Your valid email address" appearance="outline">
                     <mat-label>Email Address</mat-label>
-                        <input matInput #email type="email" pattern="[^ @]*@[^ @]*[^ @]" maxlength="50" placeholder="Ex. john@aol.com" formControlName="email">
+                        <input matInput formControlName="email" #email type="email" pattern="[^ @]*@[^ @]*[^ @]" maxlength="50" placeholder="Ex. john@aol.com">
                     <mat-hint align="end">{{email.value?.length || 0}}/50</mat-hint>
                 </mat-form-field>
                 <span style="margin-left: 3em;"></span>
                 <mat-form-field  hintLabel="Between 10 and 14 digits" appearance="outline">
                     <mat-label>Phone</mat-label>
-                        <input matInput #phone type="number" pattern=".{10,14}"maxlength="14" placeholder="Ex. 6475551234" formControlName="phone">
-                    <mat-hint align="end">{{phone.value?.length || 0}}/14</mat-hint>
+                        <input matInput formControlName="phone" #phone type="number" pattern=".{10,14}" maxlength="14" placeholder="Ex. 6475551234">
+                    <mat-hint align="end">{{phone.value?.length || 0}}/11</mat-hint>
+
                 </mat-form-field>
             </p>
             <p align="center">
                 <mat-form-field hintLabel="min 8 characters" appearance="outline">
                     <mat-label>Password</mat-label>
-                        <input matInput #password type="password" pattern=".{8,50}" maxlength="50" placeholder="" formControlName="password">
+                    <!--Password:[7 to 15 characters which contain at least one numeric digit and a special character]-->
+                        <input type="password" formControlName="password" #password pattern=".{7,50}" maxlength="50" placeholder="">
                     <mat-hint align="end">{{password.value?.length || 0}}/50</mat-hint>
                 </mat-form-field>
                 <span style="margin-left: 3em;"></span>
@@ -46,12 +46,14 @@
                     <span style="background-color: red;"   *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
                 </mat-form-field>
             </p>
-            
+
             <section align="center">
-                <div class="example-button-row">
-                  <button mat-raised-button color="primary">Register Now</button>
+             
+               <div class="example-button-row">
+                  <button type="button" mat-raised-button color="primary" (click)="createCustomer()">Register Now</button>
                 </div>
               </section>
-            </mat-card>
+
 </form>
-</div>
+
+            </mat-card>

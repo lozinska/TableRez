@@ -50,7 +50,7 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     ReactiveFormsModule
     ],
-  providers: [CustomerService,AuthService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
