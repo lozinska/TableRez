@@ -13,7 +13,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from '@angular/material/button';
 import {HttpClientModule} from '@angular/common/http';
-import { CustomerService } from './services/customer.service';
 import { AuthService } from './services/auth.service';
 import {LoginComponent} from './login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -47,7 +46,7 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     ReactiveFormsModule
     ],
-  providers: [CustomerService,AuthService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
