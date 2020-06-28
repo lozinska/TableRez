@@ -25,13 +25,11 @@ currentCustomer: any = {id: null, firstName: '', lastName: '', phone:'',email:''
       firstName:['',Validators.required],
       lastName:['',Validators.required],
       phone:['',Validators.required],
-      email:['',Validators.required],
+      email:['',Validators.required,emailValid()],
       password:['',Validators.required,Validators.minLength(6)],
         confirmPassword:['', Validators.required]
       }, {validator:matchingFields('password','confirmPassword')});
-    })
-  }
-
+    }
   createCustomer() {
     const newCustomer = {
       firstName: this.registerForm
@@ -50,13 +48,13 @@ if(!inputPass.value.match(paswd)){
   this.passwordCheck=false;
 }
 }
-  
+
 }
 function matchingFields(field1,field2){
-  return form => {
-    if(form.controls[field1].value !== form.controls[field2].value)
+  return registerForm => {
+    if(registerForm.controls[field1].value !== registerForm.controls[field2].value)
     return {mismatchedFields:true}
-  }     
+  }
 }
 
 function emailValid(){
