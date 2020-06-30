@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const restaurants = require('./models/restaurants');
 const user = require ('./models/users');
+const login = require ('./models/login');
 const mysql=require('mysql')
 const connection = mysql.createConnection({
  host     : 'mymysql.senecacollege.ca',
@@ -28,6 +29,7 @@ app.get('/',(req,res)=>{
   .use(bodyParser.json())
   .use(restaurants(connection))
   .use(user(connection))
+  .use(login(connection))
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
