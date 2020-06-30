@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{ActivatedRoute,Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {CustomerService} from '../services/customer.service';
 
 @Component({
   selector: 'app-login',
@@ -10,32 +8,34 @@ import {CustomerService} from '../services/customer.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-loginForm:FormGroup;
+form:FormGroup;
 public loginInvalid: boolean;
   private formSubmitAttempt: boolean;
   private returnUrl: string;
-  user:any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http:HttpClient,
-    private customerService: CustomerService
   ) { }
 
-   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.email],
+  async ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
+
+    this.form = this.fb.group({
+      username: ['', Validators.email],
       password: ['', Validators.required]
     });
-  //  this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
 
- login(){
-
-this.customerService.loginUser(this.loginForm.get('email').value, this.loginForm.get('password').value)
-  .then(()=>this.router.navigate(['/']))
-
-};
+  async onSubmit() {
+    this.loginInvalid = false;
+    this.formSubmitAttempt = false;
+    if (this.form.valid) {
+        const username = this.form.get('username').value;
+        const password = this.form.get('password').value;
+    } else {
+      this.formSubmitAttempt = true;
+    }
+  }
 }
