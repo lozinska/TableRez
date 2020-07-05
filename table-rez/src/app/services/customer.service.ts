@@ -29,4 +29,7 @@ export class CustomerService {
   updateUser(user) {
     return this.request('PUT', `${environment.serverUrl}/user/${user.userID}`, user);
   }
+  loginUser(email,password){
+    return this.request('POST', `${environment.serverUrl}/login`,{email,password});
+  }
 }
