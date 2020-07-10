@@ -20,6 +20,8 @@ import {LoginComponent} from './login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input";
 import { RegisterComponent } from './register/register.component';
+import { HeroBanerComponent } from './hero-baner/hero-baner.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeroBanerComponent,
+    RestaurantComponent
   ],
   imports: [
     MatButtonModule,
@@ -51,6 +55,7 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule
     ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[HeroBanerComponent]
 })
 export class AppModule { }
