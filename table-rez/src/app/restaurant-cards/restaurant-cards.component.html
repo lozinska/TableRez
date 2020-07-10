@@ -1,8 +1,9 @@
+<app-hero-baner></app-hero-baner>
 <div class="container margin" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutGap="20px">
     <mat-card fxFlexFill fxFlex="0 1 calc(20% - 20px)" class="restaurant" fxLayout="column" tabindex="0" *ngFor="let restaurant of restaurants">
     <mat-card-title-group>
       <mat-card-title class="image">
-      <img mat-card-image src="https://via.placeholder.com/220">
+      <img mat-card-image src="{{restaurant.image}}">
       </mat-card-title>
       <mat-card-subtitle class='subtitle' align="left"style="font-size:medium;line-height: 1; color:#000000">
         {{restaurant.header}}
@@ -14,7 +15,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions fxFlexAlign="end" align="left">
-      <button mat-button color='accent' style="font-size: medium;">Reserve...</button>
+      <button mat-button (click)="navigate(restaurant.id,restaurant.header)" color='accent' style="font-size: medium;">Reserve...</button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -23,4 +23,7 @@ export class RestaurantService {
   getRestaurants() {
     return this.request('GET', `${environment.serverUrl}/restaurant`);
   }
+  getOneRestaurant(id:number){
+    return this.request('GET',`${environment.serverUrl}/restaurant/${id}`);
+  }
 }
