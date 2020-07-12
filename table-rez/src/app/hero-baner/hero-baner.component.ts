@@ -13,15 +13,27 @@ import { CarouselModule, WavesModule } from 'angular-bootstrap-md'
 export class HeroBanerComponent implements OnInit {
   @Input() restaurants: any[]=[];
 
-  constructor(private restaurantService:RestaurantService) { }
+  constructor(private restaurantService:RestaurantService,
+    private router:Router) { }
   ngOnInit() {
     this.getRestaurants();
   }
 
+  navigate(id,name){
+    let navigationExtras: NavigationExtras={
+      queryParams:{
+        rest_id:id,
+        rest_name:name
+      }
+    }
+    this.router.navigate(['singlerestaurant'],navigationExtras);
+  }
   private getRestaurants(){
     this.restaurantService.getRestaurants().then((response:any)=>{
       this.restaurants=response.map((restaurant)=>{
         restaurant.image=restaurant.restaurant_image;
+        restaurant.name=restaurant.name;
+        restaurant.id=restaurant.restaurantID;
         return restaurant;
       })
     })
