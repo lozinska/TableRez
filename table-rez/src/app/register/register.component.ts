@@ -18,7 +18,7 @@ passwordCheck=true;
 currentCustomer: any = {id: null, firstName: '', lastName: '', phone:'',email:'',password:''};
   constructor(
     private formBuilder:FormBuilder,
-    private customerService:CustomerService) { }
+    private customerService:CustomerService) { }  
 
   ngOnInit() {
     this.registerForm=this.formBuilder.group({
