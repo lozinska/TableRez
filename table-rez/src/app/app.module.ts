@@ -23,7 +23,7 @@ import { RegisterComponent } from './register/register.component';
 import { HeroBanerComponent } from './hero-baner/hero-baner.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +53,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     RouterModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatTableModule,
     MDBBootstrapModule.forRoot(),
     ],
   providers: [AuthService],
