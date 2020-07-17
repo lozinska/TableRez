@@ -1,4 +1,8 @@
-.image{
-  height: 100%;
-  width: 100%;
+
+.text{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: larger;
+    color: #000;
 }
