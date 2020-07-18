@@ -8,6 +8,10 @@ const menu=require('./models/menu');
 const login=require('./models/login');
 const section=require('./models/section');
 const menuitem=require('./models/menuitem');
+const booking=require('./models/booking');
+const owner=require('./models/owner')
+const manager=require('./models/manager')
+const host=require('./models/host')
 const mysql=require('mysql')
 const connection = mysql.createConnection({
  host     : 'mymysql.senecacollege.ca',
@@ -30,6 +34,10 @@ const app = express()
   .use(menu(connection))
   .use(section(connection))
   .use(menuitem(connection))
+  .use(booking(connection))
+  .use(owner(connection))
+  .use(manager(connection))
+  .use(host(connection))
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
