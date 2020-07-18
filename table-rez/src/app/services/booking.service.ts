@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class ItemService {
 
   constructor(private http:HttpClient) { }
 
@@ -20,17 +20,17 @@ export class MenuService {
       result.subscribe(resolve, reject);
     });
   }
-  getMenu(id:number){
-    return this.request('GET',`${environment.serverUrl}/menu/${id}`);
+  getAllBookings() {
+    return this.request('GET', `${environment.serverUrl}/booking`);
   }
-  getAllMenus() {
-    return this.request('GET', `${environment.serverUrl}/menu`);
+  getBooking(id:number){
+    return this.request('GET',`${environment.serverUrl}/booking/${id}`);
   }
-  addMenu(menu){
-    return this.request('POST',`${environment.serverUrl}/menu`,menu);
+  addBooking(booking){
+    return this.request('POST',`${environment.serverUrl}/booking`,booking);
   }
-  updateMenu(menu) {
-    return this.request('PUT', `${environment.serverUrl}/menu/${menu.menuID}`, menu);
+  updateBooking(booking) {
+    return this.request('PUT', `${environment.serverUrl}/booking/${booking.bookingID}`, booking);
   }
 }
 

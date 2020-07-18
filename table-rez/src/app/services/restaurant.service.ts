@@ -26,4 +26,11 @@ export class RestaurantService {
   getOneRestaurant(id:number){
     return this.request('GET',`${environment.serverUrl}/restaurant/${id}`);
   }
+
+  addRestaurant(restaurant){
+    return this.request('POST',`${environment.serverUrl}/restaurant`,restaurant);
+  }
+  updateRestaurant(restaurant) {
+    return this.request('PUT', `${environment.serverUrl}/restaurant/${restaurant.restaurantID}`, restaurant);
+  }
 }

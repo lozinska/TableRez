@@ -20,8 +20,17 @@ export class SectionService {
       result.subscribe(resolve, reject);
     });
   }
+  getAllSections() {
+    return this.request('GET', `${environment.serverUrl}/section`);
+  }
   getSection(id:number){
     return this.request('GET',`${environment.serverUrl}/section/${id}`);
+  }
+  addSection(section){
+    return this.request('POST',`${environment.serverUrl}/section`,section);
+  }
+  updateSection(section) {
+    return this.request('PUT', `${environment.serverUrl}/section/${section.sectionID}`, section);
   }
 }
 

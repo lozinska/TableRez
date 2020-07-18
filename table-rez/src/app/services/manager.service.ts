@@ -20,17 +20,20 @@ export class ItemService {
       result.subscribe(resolve, reject);
     });
   }
-  getAllItems() {
-    return this.request('GET', `${environment.serverUrl}/item`);
+  getAllManagers() {
+    return this.request('GET', `${environment.serverUrl}/manager`);
   }
-  getItem(id:number){
-    return this.request('GET',`${environment.serverUrl}/item/${id}`);
+  getManager(id:number){
+    return this.request('GET',`${environment.serverUrl}/manager/${id}`);
   }
-  addItem(item){
-    return this.request('POST',`${environment.serverUrl}/item`,item);
+  addManager(manager){
+    return this.request('POST',`${environment.serverUrl}/manager`,manager);
   }
-  updateItem(item) {
-    return this.request('PUT', `${environment.serverUrl}/item/${item.itemID}`, item);
+  updateManager(manager) {
+    return this.request('PUT', `${environment.serverUrl}/manager/${manager.managerID}`, manager);
+  }
+  loginManager(email,password){
+    return this.request('POST', `${environment.serverUrl}/manager`,{email,password});
   }
 }
 
