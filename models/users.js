@@ -1,12 +1,18 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 
 function createUser(db) {
   const router = express.Router();
   const owner = '';
   router.post('/user', function (req, res, next) {
+	  let pHashed ='';
+	  bcrypt.hash(req.body.password,10).then(hash => {
+		  pHashed = hash;
+	  });
+	  
     db.query(
         'INSERT INTO customer ( firstName, lastName, phone, email, password) VALUES (?,?,?,?,?)',
-        [ req.body.firstName,req.body.lastName, req.body.phone, req.body.email,req.body.password],
+        [ req.body.firstName,req.body.lastName, req.body.phone, req.body.email,pHashed],
       (error, results) => {
         if (error) {
           console.log(error);
