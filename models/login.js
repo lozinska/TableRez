@@ -15,18 +15,18 @@ function logUser(db) {
 	//	if (res === true)// passwords match
 	
 	
-	if(username&&password){
+	if(loginUsername&&loginPassword){
     db.query(
-        'SELECT password FROM customer WHERE email=?', loginUsername,
+        'SELECT password FROM customer WHERE email=?', [loginUsername],
       (error, results) => {
         if (error) {
           console.log(error);
           res.status(500).json({status: 'error'});
         } else {
-			if (results){
+			if (results.length == 1){
 				//user exists; retrieved stored hash
 				
-				bcrypt.compare(loginPassword,results).then((res) => {
+				bcrypt.compare(loginPassword,results[0]).then((res) => {
 					if(res){
 						
 						res.status(200).json(results);
@@ -34,12 +34,12 @@ function logUser(db) {
 						// redirect
 						//add jwt 
 					}else{
-						res.status(500).json({status: 'error'});
+						res.status(500).json({status: 'error'});//invalid password
 					}
 				});
 			}else{
 				console.log(error);
-				res.status(500).json({status: 'error'});
+				res.status(500).json({status: 'error'});//ivalid username
 			}
         }
       }
