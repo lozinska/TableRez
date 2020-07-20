@@ -1,0 +1,40 @@
+<br>
+<div style="display: flex; justify-content: center;">
+
+<form [formGroup]=registerForm action="register.component.ts">
+
+    <mat-card class="example-container">
+    <h2 align="center">Address Registration</h2>
+    <p align="center">Fill out all the fields:</p>
+            <mat-form-field   hintLabel="Enter your address including suite#" appearance="outline">
+                <mat-label>Street address</mat-label>
+                    <textarea matInput #addressDescription type="text" maxlength="100" placeholder="65 Forest Manor Rd., suite# 0313" formControlName="addressDescription" autofocus="on">
+                <mat-hint align="end">{{addressDescription.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+                <mat-form-field hintLabel="Exactly 6 characters" appearance="outline" >
+                    <mat-label>Postal Code</mat-label>
+                        <input matInput #postalCode type="text" pattern="[ABCEGHJKLMNPRSTVXY]\d[A-Z]\d[A-Z]\d$" minlength="6" maxlength="6" placeholder="M2J1M5" formControlName="postalCode">
+                    <mat-hint align="end">{{postalCode.value?.length || 0}}/6</mat-hint>
+                    <mat-error *ngIf="registerForm.get('postalCode').hasError('pattern')">Invalid postal code for Canada</mat-error>
+                </mat-form-field>
+            
+                <mat-form-field hintLabel="Exactly 2 letters" appearance="outline" >
+                    <mat-label>Province</mat-label>
+                        <input matInput #provinceCode type="text" pattern="[A-Z][A-Z]$" minlength="2" maxlength="2" placeholder="ON" formControlName="provinceCode">
+                    <mat-hint align="end">{{provinceCode.value?.length || 0}}/2</mat-hint>
+                    <mat-error *ngIf="registerForm.get('provinceCode').hasError('pattern')">Invalid province code for Canada</mat-error>
+                </mat-form-field>
+
+                <mat-form-field hintLabel="Country" appearance="outline" >
+                    <mat-label>Country</mat-label>
+                        <input matInput #country type="text"  maxlength="20" placeholder="Canada" formControlName="country">
+                    <mat-hint align="end">{{country.value?.length || 0}}/20</mat-hint>
+                </mat-form-field>
+            <section align="center">
+                <div class="example-button-row">
+                  <button mat-raised-button color="primary" (click)="createAddress()">Register Address</button>
+                </div>
+              </section>
+            </mat-card>
+</form>
+</div>
