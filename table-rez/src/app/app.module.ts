@@ -24,6 +24,8 @@ import { HeroBanerComponent } from './hero-baner/hero-baner.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatTableModule} from '@angular/material/table';
+import { FilterPipe }  from './services/filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     RegisterComponent,
     HeroBanerComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    FilterPipe
   ],
   imports: [
     MatButtonModule,
