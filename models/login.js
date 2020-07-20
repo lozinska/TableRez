@@ -17,26 +17,23 @@ function logUser(db) {
 	
 	if(loginUsername&&loginPassword){
     db.query(
-        'SELECT password FROM customer WHERE email=?', [loginUsername],
+        'SELECT * FROM customer WHERE email=?', [loginUsername],
       (error, results) => {
         if (error) {
           console.log(error);
           res.status(500).json({status: 'error'});
         } else {
-			if (results.length == 1){
+			if (results){
 				//user exists; retrieved stored hash
 				
-				bcrypt.compare(loginPassword,results[0]).then((res) => {
-					if(res){
-						
-						res.status(200).json(results);
-						//correct login 
-						// redirect
-						//add jwt 
-					}else{
-						res.status(500).json({status: 'error'});//invalid password
+				bcrypt.compare(loginPassword,results[0].password,function(err, result) {
+					if(result) {
+						return res.send({ message: "Login Successful" });
 					}
-				});
+					else {
+						return res.status(400).send({ message: "Invalid Password" });
+					}
+        });
 			}else{
 				console.log(error);
 				res.status(500).json({status: 'error'});//ivalid username
