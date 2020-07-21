@@ -1,3 +1,5 @@
+<app-hero-baner></app-hero-baner>
+
 <mat-toolbar>
   <mat-form-field style="width: 100%" floatLabel='never'>
   <input  
@@ -8,10 +10,8 @@
 </mat-form-field>
 </mat-toolbar>
 
-<app-hero-baner></app-hero-baner>
-
 <div class="container margin" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutGap="20px">
-    <mat-card fxFlexFill fxFlex="0 1 calc(20% - 20px)" class="restaurant" fxLayout="column" tabindex="0" *ngFor="let restaurant of restaurants | filter : searchText;let i=index">
+    <mat-card fxFlexFill fxFlex="0 1 calc(20% - 20px)" class="restaurant" fxLayout="column" tabindex="0" *ngFor="let restaurant of restaurants | filter : searchText;let i=index" *ngFor="let address of addresses">
     <mat-card-title-group>
       <mat-card-title class="image">
       <img mat-card-image src="{{restaurant.image}}">
@@ -24,8 +24,8 @@
       <p align="left">
     {{restaurant.body}}
     </p>
-    <p *ngFor="let address of restaurant">
-      {{address[i].description}}
+    <p>
+      {{address.description}}
     </p>
         <br/>
     </mat-card-content>
