@@ -10,6 +10,7 @@ import { AddressService } from '../services/address.service';
   styleUrls: ['./restaurant-cards.component.css']
 })
 export class RestaurantCardsComponent implements OnInit {
+  searchText: string;
   @Input() restaurants: any[]=[];
   @Input() addresses: any[]=[];
   selectedAddress: any={id:null,description:'',post_code:''}
