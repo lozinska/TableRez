@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
@@ -25,6 +26,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatTableModule} from '@angular/material/table';
 import { FilterPipe }  from './services/filter.pipe';
+import {RegisterManagerComponent} from './register-manager/register-manager.component';
+import { LoginManagerComponent } from './login-manager/login-manager.component'
 
 @NgModule({
   declarations: [
@@ -34,9 +37,11 @@ import { FilterPipe }  from './services/filter.pipe';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterManagerComponent,
     HeroBanerComponent,
     RestaurantComponent,
-    FilterPipe
+    FilterPipe,
+    LoginManagerComponent
   ],
   imports: [
     MatButtonModule,
@@ -48,6 +53,7 @@ import { FilterPipe }  from './services/filter.pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatMenuModule,
     MatInputModule,
     MatCardModule,
     MatListModule,

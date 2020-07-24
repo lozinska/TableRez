@@ -6,6 +6,7 @@ const user = require ('./models/users');
 const address=require('./models/address');
 const menu=require('./models/menu');
 const login=require('./models/login');
+const managerlogin=require('./models/manager-login');
 const section=require('./models/section');
 const menuitem=require('./models/menuitem');
 const booking=require('./models/booking');
@@ -13,6 +14,7 @@ const owner=require('./models/owner')
 const manager=require('./models/manager')
 const host=require('./models/host')
 const mysql=require('mysql')
+const passport = require("passport");
 const connection = mysql.createConnection({
  host     : 'mymysql.senecacollege.ca',
   user     : 'prj566_201a04',
@@ -27,9 +29,12 @@ const app = express()
 
   .use(cors())
   .use(bodyParser.json())
+  .use(express.json())
+  .use(passport.initialize())
   .use(restaurants(connection))
   .use(user(connection))
   .use(login(connection))
+  .use(managerlogin(connection))
   .use(address(connection))
   .use(menu(connection))
   .use(section(connection))

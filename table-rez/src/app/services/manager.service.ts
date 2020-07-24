@@ -5,7 +5,8 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ItemService {
+
+export class ManagerService {
 
   constructor(private http:HttpClient) { }
 
@@ -26,14 +27,14 @@ export class ItemService {
   getManager(id:number){
     return this.request('GET',`${environment.serverUrl}/manager/${id}`);
   }
-  addManager(manager){
+  createManager(manager){
     return this.request('POST',`${environment.serverUrl}/manager`,manager);
   }
   updateManager(manager) {
     return this.request('PUT', `${environment.serverUrl}/manager/${manager.managerID}`, manager);
   }
   loginManager(email,password){
-    return this.request('POST', `${environment.serverUrl}/manager`,{email,password});
+    return this.request('POST', `${environment.serverUrl}/login-manager`,{email,password});
   }
 }
 
