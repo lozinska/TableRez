@@ -27,7 +27,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import {FullCalendarModule} from 'primeng/fullcalendar';
 import { ReservationComponent } from './reservation/reservation.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe }  from './services/filter.pipe';
@@ -72,7 +71,6 @@ import { LoginManagerComponent } from './login-manager/login-manager.component'
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FullCalendarModule,
     MatSelectModule,
     MDBBootstrapModule.forRoot(),
     ],
