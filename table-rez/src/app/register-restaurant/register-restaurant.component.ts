@@ -11,5 +11,5 @@ export class RegisterRestaurantComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }

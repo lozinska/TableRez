@@ -10,13 +10,15 @@ function createUser(db) {
 	bcrypt.hash(req.body.password,10).then(hash => {
 		pHashed = hash;
 		db.query(
-			'Select Count(*) From customer Where email=?',[req.body.email],
+			'Select * From customer Where email=?',[req.body.email],
 			(error, results) => {
 				if (error) {
 					console.log(error);
 					res.status(500).json({status: 'error'});
 				} else {
-					if(results > 0){
+					console.log(results.length);
+					if(results.length > 0){
+						console.log('user taken');
 						//user already registered
 					}
 					else{

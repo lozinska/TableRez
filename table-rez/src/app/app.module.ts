@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
@@ -29,6 +30,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { ReservationComponent } from './reservation/reservation.component';
 import {MatSelectModule} from '@angular/material/select';
+import { FilterPipe }  from './services/filter.pipe';
+import {RegisterManagerComponent} from './register-manager/register-manager.component';
+import { LoginManagerComponent } from './login-manager/login-manager.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +42,13 @@ import {MatSelectModule} from '@angular/material/select';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterManagerComponent,
     HeroBanerComponent,
     RestaurantComponent,
-    ReservationComponent
+
+    ReservationComponent,
+    FilterPipe,
+    LoginManagerComponent
   ],
   imports: [
     MatButtonModule,
@@ -51,6 +60,7 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatMenuModule,
     MatInputModule,
     MatCardModule,
     MatListModule,
