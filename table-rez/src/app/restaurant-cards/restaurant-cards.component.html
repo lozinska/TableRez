@@ -2,10 +2,10 @@
 
 <mat-toolbar>
   <mat-form-field style="width: 100%" floatLabel='never'>
-  <input  
-         matInput 
+  <input
+         matInput
          [(ngModel)]="searchText"
-         placeholder="Search" 
+         placeholder="Search"
          autocomplete="off" >
 </mat-form-field>
 </mat-toolbar>
@@ -23,9 +23,6 @@
     <mat-card-content fxLayoutAlign="center center" style="text-align:center">
       <p align="left">
     {{restaurant.body}}
-    </p>
-    <p *ngFor="let address of addresses">
-      {{address[i].description}}
     </p>
         <br/>
     </mat-card-content>
