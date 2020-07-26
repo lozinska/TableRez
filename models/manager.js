@@ -1,21 +1,48 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const salt = 10;// between 10 and 12 rounds accepted
 
 function createManager(db) {
   const router = express.Router();
+  var pHashed ='';
+  
   router.post('/manager', function (req, res, next) {
-    db.query(
-        'INSERT INTO manager ( firstName, lastName, phone, email, password, ownerID, restaurantID) VALUES (?,?,?,?,?,?,?)',
-        [ req.body.firstName,req.body.lastName, req.body.phone, req.body.email,req.body.password, req.body.ownerID, req.body.restaurantID],
-      (error, results) => {
-        if (error) {
-          console.log(error);
-          res.status(500).json({status: 'error'});
-        } else {
-          res.status(200).json(results);
-        }
-      }
-    );
-  });
+	bcrypt.hash(req.body.password,salt).then(hash => {
+		pHashed = hash;
+		db.query(
+			'Select * From manager Where email=?',[req.body.email],
+			(error, results) => {
+				if (error) {
+					console.log(error);
+					res.status(500).json({status: 'error'});
+				} else {
+					console.log(results.length);
+					if(results.length > 0){
+						console.log('user taken');
+						//manager already registered
+					}
+					else{
+						db.query(
+						'INSERT INTO manager ( firstName, lastName, phone, email, password) VALUES (?,?,?,?,?)',
+							[ req.body.firstName,req.body.lastName, req.body.phone, req.body.email,pHashed],
+						(error, results) => {
+							if (error) {
+								console.log(error);
+								res.status(500).json({status: 'error'});
+							} else {
+								
+								//add redirect to login
+								//
+								res.status(200).json({ "message": "Registration successful" });
+							}
+						});
+					}
+				}
+		});
+	});
+});		
+  
+  
   router.get('/manager', function (req, res, next) {
     db.query(
         'SELECT * FROM manager',
