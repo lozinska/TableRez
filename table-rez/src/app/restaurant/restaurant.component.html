@@ -21,7 +21,17 @@
 <mat-divider></mat-divider>
 <button mat-raised-button color="primary" style="margin:10px;"(click)="displayMenu()">Take a look at our menu selection</button>
 
-<button mat-raised-button color="primary" >Reserve table now</button>
+<button mat-raised-button color="primary" (click)="reserveTable()">Reserve table now</button>
+
+</div>
+<div [hidden]="reserve" class="reservedescription" style="font-size: x-large;text-align:center;"></div>
+<br>
+  <div *ngFor="let i of rangeReverse;">
+    <div class="reservation-button">
+<button mat-raised-button color="primary"  (click)="navigate(selectedRestaurant.id,i)">
+ {{i}}
+</button>
+    </div>
 
 </div>
 <br>

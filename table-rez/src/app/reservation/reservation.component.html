@@ -1,0 +1,14 @@
+<form [formGroup]=reservationForm action="reservation.component.ts">
+  <h2>Reservation time: {{time}}</h2>
+ <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Reservation date</mat-label>
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div>
+  <button mat-raised-button color="primary" (click)="createBooking()">Create reservation</button>
+</div>
+
+</form>
+

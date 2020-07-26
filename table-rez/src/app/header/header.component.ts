@@ -11,4 +11,5 @@ constructor() {}
 title='TableRez';
 ngOnInit(): void {
 }
+
 }

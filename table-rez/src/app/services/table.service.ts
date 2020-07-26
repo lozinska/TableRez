@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class HostService {
+export class TableService {
 
   constructor(private http:HttpClient) { }
 
@@ -20,21 +20,10 @@ export class HostService {
       result.subscribe(resolve, reject);
     });
   }
-  getAllHosts() {
-    return this.request('GET', `${environment.serverUrl}/host`);
+  getAllTables() {
+    return this.request('GET', `${environment.serverUrl}/table`);
   }
-  getHost(id:number){
-    return this.request('GET',`${environment.serverUrl}/host/${id}`);
-  }
-  addHost(host){
-    return this.request('POST',`${environment.serverUrl}/host`,host);
-  }
-  updateHost(host) {
-    return this.request('PUT', `${environment.serverUrl}/host/${host.hostID}`, host);
-  }
-  loginHost(email,password){
-    return this.request('POST', `${environment.serverUrl}/host`,{email,password});
+  getTableById(id:number){
+    return this.request('GET', `${environment.serverUrl}/table/${id}`)
   }
 }
-
-

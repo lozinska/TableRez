@@ -5,7 +5,7 @@ const router = express.Router();
 
   router.get('/restaurant', function (req, res, next) {
     db.query(
-      'SELECT restaurantID, name, email, restaurant_image FROM restaurant',
+      'SELECT * FROM restaurant',
       (error, results) => {
         if (error) {
           console.log(error);
@@ -48,7 +48,7 @@ const router = express.Router();
 
   router.get('/restaurant/:id', function (req, res, next) {
     db.query(
-        'SELECT restaurantID, name, email, restaurant_image, restaurant_desc FROM restaurant WHERE restaurantID=?',
+        'SELECT * FROM restaurant WHERE restaurantID=?',
         [req.params.id],
       (error, results) => {
         if (error) {

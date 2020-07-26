@@ -24,6 +24,11 @@ import { HeroBanerComponent } from './hero-baner/hero-baner.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {FullCalendarModule} from 'primeng/fullcalendar';
+import { ReservationComponent } from './reservation/reservation.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +38,8 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     RegisterComponent,
     HeroBanerComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    ReservationComponent
   ],
   imports: [
     MatButtonModule,
@@ -54,6 +60,10 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FullCalendarModule,
+    MatSelectModule,
     MDBBootstrapModule.forRoot(),
     ],
   providers: [AuthService],

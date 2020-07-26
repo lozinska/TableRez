@@ -4,12 +4,14 @@ import {LoginComponent} from './login/login.component';
 import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.component';
 import { RegisterComponent } from './register/register.component';
 import{RestaurantComponent} from './restaurant/restaurant.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 const routes: Routes = [
 {path:'', component:RestaurantCardsComponent},
 {path:'register', component:RegisterComponent},
 { path: 'login', component: LoginComponent },
 { path: 'singlerestaurant', component: RestaurantComponent },
+{path:'reservation',component:ReservationComponent},
 {path: '**', redirectTo: '' }
 ];
 
