@@ -13,6 +13,9 @@ const booking=require('./models/booking');
 const owner=require('./models/owner')
 const manager=require('./models/manager')
 const host=require('./models/host')
+const tablesection=require('./models/tablesection');
+const table=require('./models/table');
+const dateTableDate=require('./models/dateTableDate')
 const mysql=require('mysql')
 const passport = require("passport");
 const connection = mysql.createConnection({
@@ -43,6 +46,9 @@ const app = express()
   .use(owner(connection))
   .use(manager(connection))
   .use(host(connection))
+  .use(tablesection(connection))
+  .use(table(connection))
+  .use(dateTableDate(connection))
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
