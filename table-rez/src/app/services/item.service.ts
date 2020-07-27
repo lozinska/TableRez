@@ -26,6 +26,9 @@ export class ItemService {
   getItem(id:number){
     return this.request('GET',`${environment.serverUrl}/item/${id}`);
   }
+  getItembyRestaurant(id:number){
+    return this.request('GET',`${environment.serverUrl}/restaurantitem/${id}`);
+  }
   addItem(item){
     return this.request('POST',`${environment.serverUrl}/item`,item);
   }

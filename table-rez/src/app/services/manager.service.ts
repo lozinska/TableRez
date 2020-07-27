@@ -24,6 +24,15 @@ export class ManagerService {
   getAllManagers() {
     return this.request('GET', `${environment.serverUrl}/manager`);
   }
+  getManagerbyEmail(email:string){
+    return this.request('GET', `${environment.serverUrl}/manager/${email}`);
+  }
+  getManagerbySectionEmail(email:string){
+    return this.request('GET', `${environment.serverUrl}/managersection/${email}`);
+  }
+  getManagerItembyEmail(email:string){
+    return this.request('GET', `${environment.serverUrl}/manageritem/${email}`);
+  }
   getManager(id:number){
     return this.request('GET',`${environment.serverUrl}/manager/${id}`);
   }

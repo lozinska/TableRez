@@ -8,6 +8,9 @@ import{RestaurantComponent} from './restaurant/restaurant.component';
 import {RegisterManagerComponent} from './register-manager/register-manager.component';
 import {LoginManagerComponent} from './login-manager/login-manager.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { ManagerComponent } from './manager/manager.component';
 
 const routes: Routes = [
 {path:'', component:RestaurantCardsComponent},
@@ -16,7 +19,10 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'login-manager', component: LoginManagerComponent },
 { path: 'singlerestaurant', component: RestaurantComponent },
-{path:'reservation',component:ReservationComponent}, 
+{path:'reservation',component:ReservationComponent},
+{path: 'addSection', component: AddMenusectionComponent },
+{path: 'addItem', component: AddItemComponent },
+{path: 'managerRes', component: ManagerComponent},
 {path: '**', redirectTo: '' }
 ];
 
