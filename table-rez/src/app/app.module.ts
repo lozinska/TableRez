@@ -31,7 +31,10 @@ import { ReservationComponent } from './reservation/reservation.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterPipe }  from './services/filter.pipe';
 import {RegisterManagerComponent} from './register-manager/register-manager.component';
-import { LoginManagerComponent } from './login-manager/login-manager.component'
+import { LoginManagerComponent } from './login-manager/login-manager.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
+import { ManagerComponent } from './manager/manager.component'
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { LoginManagerComponent } from './login-manager/login-manager.component'
 
     ReservationComponent,
     FilterPipe,
-    LoginManagerComponent
+    LoginManagerComponent,
+    AddItemComponent,
+    AddMenusectionComponent,
+    ManagerComponent
   ],
   imports: [
     MatButtonModule,
