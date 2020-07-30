@@ -26,14 +26,14 @@ export class OwnerService {
   getOwner(id:number){
     return this.request('GET',`${environment.serverUrl}/owner/${id}`);
   }
-  addOwner(owner){
+  createOwner(owner){
     return this.request('POST',`${environment.serverUrl}/owner`,owner);
   }
   updateOwner(owner) {
     return this.request('PUT', `${environment.serverUrl}/owner/${owner.ownerID}`, owner);
   }
   loginOwner(email,password){
-    return this.request('POST', `${environment.serverUrl}/host`,{email,password});
+    return this.request('POST', `${environment.serverUrl}/login-manager`,{email,password});
   }
 }
 

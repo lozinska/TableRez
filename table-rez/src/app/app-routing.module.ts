@@ -6,6 +6,8 @@ import { RestaurantCardsComponent } from './restaurant-cards/restaurant-cards.co
 import { RegisterComponent } from './register/register.component';
 import{RestaurantComponent} from './restaurant/restaurant.component';
 import {RegisterManagerComponent} from './register-manager/register-manager.component';
+import {RegisterOwnerComponent} from './register-owner/register-owner.component';
+import {LoginOwnerComponent} from './login-owner/login-owner.component';
 import {LoginManagerComponent} from './login-manager/login-manager.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
 {path: 'manager', component:RegisterManagerComponent},
 { path: 'login', component: LoginComponent },
 { path: 'login-manager', component: LoginManagerComponent },
+{ path: 'login-owner', component: LoginOwnerComponent },
+{ path: 'register-owner', component: RegisterOwnerComponent },
 { path: 'singlerestaurant', component: RestaurantComponent },
 {path:'reservation',component:ReservationComponent},
 {path: 'addSection', component: AddMenusectionComponent },

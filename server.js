@@ -7,6 +7,7 @@ const address=require('./models/address');
 const menu=require('./models/menu');
 const login=require('./models/login');
 const managerlogin=require('./models/manager-login');
+const ownerlogin=require('./models/owner-login');
 const section=require('./models/section');
 const menuitem=require('./models/menuitem');
 const booking=require('./models/booking');
@@ -41,6 +42,7 @@ const app = express()
   .use(user(connection))
   .use(login(connection))
   .use(managerlogin(connection))
+  .use(ownerlogin(connection))
   .use(address(connection))
   .use(menu(connection))
   .use(section(connection))

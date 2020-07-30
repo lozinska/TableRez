@@ -34,7 +34,9 @@ import {RegisterManagerComponent} from './register-manager/register-manager.comp
 import { LoginManagerComponent } from './login-manager/login-manager.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
-import { ManagerComponent } from './manager/manager.component'
+import { ManagerComponent } from './manager/manager.component';
+import { LoginOwnerComponent } from './login-owner/login-owner.component'
+import { RegisterOwnerComponent } from './register-owner/register-owner.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { ManagerComponent } from './manager/manager.component'
     LoginManagerComponent,
     AddItemComponent,
     AddMenusectionComponent,
-    ManagerComponent
+    ManagerComponent,
+    LoginOwnerComponent,
+    RegisterOwnerComponent
   ],
   imports: [
     MatButtonModule,
