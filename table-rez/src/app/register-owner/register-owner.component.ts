@@ -16,7 +16,7 @@ export class RegisterOwnerComponent implements OnInit {
   passwordCheck=true;
   
   
-  currentCustomer: any = {id: null, firstName: '', lastName: '', phone:'',email:'',password:''};
+  currentOwner: any = {id: null, firstName: '', lastName: '', phone:'',email:'',password:''};
     constructor(
       private formBuilder:FormBuilder,
       private ownerService:OwnerService) { }  
@@ -31,6 +31,7 @@ export class RegisterOwnerComponent implements OnInit {
         confirmPassword:['', Validators.required]
       }, {validator:matchingFields('password','confirmPassword')});
       }
+
     createOwner() {
       const newOwner = {
         firstName: this.registerForm.get('firstName').value,
@@ -42,6 +43,8 @@ export class RegisterOwnerComponent implements OnInit {
     this.ownerService.createOwner(newOwner);
     }
   }
+
+  
   
   function matchingFields(field1,field2){
     return registerForm => {
