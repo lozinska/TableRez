@@ -1,0 +1,136 @@
+<mat-toolbar color="accent">{{date}} {{selectedUser.fName}}</mat-toolbar>
+<div>
+<button class="user-button" mat-raised-button (click)=updatePersonalInfo()>Personal Information</button>
+<button class="user-button" mat-raised-button (click)=checkPreviousBookings()>History of reservation</button>
+<button class="user-button" mat-raised-button>Restaurant Labeling</button>
+<button class="user-button" mat-raised-button (click)=displayNote()>Personal Notes</button>
+</div>
+<div [hidden]="personalInfo">
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup"[editable]=true>
+      <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Personal Info</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput [placeholder]="selectedUser.fName" formControlName=firstName required>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput [placeholder]="selectedUser.lName" formControlName=lastName required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out contact information</ng-template>
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone" [placeholder]="selectedUser.phone" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" [placeholder]="selectedUser.email" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <button mat-raised-button color="primary" (click)="saveChanges()">Update</button>
+    </mat-step>
+</mat-horizontal-stepper>
+</div>
+<div [hidden]="booking">
+  <div class="previousBooking" style="width:50%; float:left">
+    Previous Reservations
+    <div *ngFor="let book of customerFutureBookings; let i=index">
+<div *ngIf="checkBookingTime(book.time)">
+      <mat-accordion class="example-headers-align">
+
+        <mat-expansion-panel hideToggle>
+
+          <mat-expansion-panel-header>
+
+            <mat-panel-title>
+             {{book.rest_name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon color='primary'>event</mat-icon>
+              {{book.time}}
+
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+<p>{{book.tableSectionName}}</p>
+<p>{{book.capacity}}</p>
+        </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
+</div>
+  </div>
+
+<div class="futureBooking" style="width:50%; float:right">
+  Future Reservations
+  <div *ngFor="let book of customerFutureBookings; let i=index">
+    <div *ngIf="!checkBookingTime(book.time)">
+  <mat-accordion class="example-headers-align">
+
+    <mat-expansion-panel hideToggle>
+
+      <mat-expansion-panel-header>
+
+        <mat-panel-title>
+         {{book.rest_name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon color='primary'>event</mat-icon>
+          {{book.time}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+    </mat-expansion-panel>
+
+    </mat-accordion>
+</div>
+</div>
+</div>
+</div>
+<div [hidden]="showNote">
+  <button class="note-button" mat-raised-button color='primary'(click)=displayRestaurants()>Add Note</button>
+  <div [hidden]="restaurantName" class="restaurantList" *ngFor="let book of customerFutureBookings">
+    <ul>
+      <li (click)="addInfo()">{{book.rest_name}}</li>
+      <div [hidden]="addNoteSwitch">
+      <form [formGroup]=createNoteForm action="customer-page.component.ts">
+        <input matInput #description type="text" placeholder="Restaurant Description" formControlName="description">
+        <button mat-raised-button (click)="addNote()">Save</button>
+        </form>
+      </div>
+    </ul>
+  </div>
+  <div *ngFor="let note of notes">
+    <mat-card class="note-card" style="max-width: 400px; float: left; margin-left: 5rem;">
+      <mat-card-header>
+        <img mat-card-avatar src="{{note.restaurant_image}}">
+        <mat-card-title>Review of {{note.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+         {{note.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color='primary' (click)="navigate(note.noteID,note.name)">Update</button>
+        <button mat-button color='primary'(click)="navigate(note.noteID,note.name)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>

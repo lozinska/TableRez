@@ -120,6 +120,7 @@ this.menuService.getMenu(this.selectedRestaurant.id).then((response:any)=>{
         }
         if(this.today.getMinutes()>30){
           day.setMinutes(0)
+
         }
       }
       for(let i=day.getHours();i<24;i++){

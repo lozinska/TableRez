@@ -43,7 +43,35 @@ function createUser(db) {
   router.get('/user', function (req, res, next) {
     db.query(
         'SELECT userID, firstName, lastName, phone, email, password FROM customer',
-        [req.body.userID, req.body.firstName,req.body.lastName, req.body.phone, req.body.email,req.body.password],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.get('/user/:id', function (req, res, next) {
+    db.query(
+        'SELECT * FROM customer WHERE userID=?',[req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.get('/user/:email', function (req, res, next) {
+    db.query(
+        'SELECT * FROM customer WHERE email=?',
+       [req.params.email],
       (error, results) => {
         if (error) {
           console.log(error);
@@ -57,17 +85,20 @@ function createUser(db) {
 
   router.put('/user/:id', function (req, res, next) {
     db.query(
-      'UPDATE customer SET firstName=?, lastName=?, phone=?, email=?, password=? WHERE id=?',
-      [req.body.firstName, req.body.lastName, req.body.phone,req.body.email,req.body.password, req.params.userID],
-      (error) => {
+      'UPDATE customer SET firstName=?, lastName=?, phone=?, email=? WHERE userID=?',
+      [req.body.firstName, req.body.lastName, req.body.phone,req.body.email, req.params.id],
+      (error,results) => {
         if (error) {
           res.status(500).json({status: 'error'});
         } else {
-          res.status(200).json({status: 'ok'});
+          res.status(200).json(results);
+          console.log(results)
         }
       }
     );
   });
+
+  
   // the routes are defined here
 
   return router;

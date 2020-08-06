@@ -34,7 +34,14 @@ import {RegisterManagerComponent} from './register-manager/register-manager.comp
 import { LoginManagerComponent } from './login-manager/login-manager.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
-import { ManagerComponent } from './manager/manager.component'
+import { ManagerComponent } from './manager/manager.component';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +60,9 @@ import { ManagerComponent } from './manager/manager.component'
     LoginManagerComponent,
     AddItemComponent,
     AddMenusectionComponent,
-    ManagerComponent
+    ManagerComponent,
+    CustomerPageComponent,
+    NoteComponent
   ],
   imports: [
     MatButtonModule,
@@ -61,12 +70,16 @@ import { ManagerComponent } from './manager/manager.component'
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
+    MatGridListModule,
+    MatIconModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatMenuModule,
     MatInputModule,
+    MatStepperModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule,
@@ -74,6 +87,7 @@ import { ManagerComponent } from './manager/manager.component'
     RouterModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatRadioModule,
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,

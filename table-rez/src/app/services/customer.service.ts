@@ -26,10 +26,16 @@ export class CustomerService {
     return this.request('POST', `${environment.serverUrl}/user`, user);
   }
 
-  updateUser(user) {
-    return this.request('PUT', `${environment.serverUrl}/user/${user.userID}`, user);
+  updateUser(id:number, value:any) {
+    return this.request('PUT', `${environment.serverUrl}/user/${id}`, value);
   }
   loginUser(email,password){
     return this.request('POST', `${environment.serverUrl}/login`,{email,password});
+  }
+  getUserByEmail(email){
+    return this.request('GET', `${environment.serverUrl}/user/${email}`,email);
+  }
+  getUserById(id){
+    return this.request('GET', `${environment.serverUrl}/user/${id}`,id);
   }
 }

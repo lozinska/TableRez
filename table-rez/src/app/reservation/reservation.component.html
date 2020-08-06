@@ -1,14 +1,26 @@
 <form [formGroup]=reservationForm action="reservation.component.ts">
-  <h2>Reservation time: {{time}}</h2>
- <mat-form-field class="example-full-width" appearance="fill">
+ <h2>Reservation time: {{time}}</h2>
+<mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Reservation date</mat-label>
-    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" >
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <h4>Select Table Section</h4>
+  <mat-form-field appearance="fill">
+    <mat-select name="tableSection" [(value)]="selected">
+      <mat-label>Table Section</mat-label>
+      <mat-option *ngFor="let tableSection of tableSections"  [value]="tableSection.tableSectionName">
+        {{tableSection.tableSectionName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>{{selected}}</div>
+  <h4>Select Table Capacity</h4>
   <div>
   <button mat-raised-button color="primary" (click)="createBooking()">Create reservation</button>
 </div>
+
 
 </form>
 
