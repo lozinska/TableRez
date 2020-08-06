@@ -22,6 +22,8 @@ const manageritem=require('./models/manageritem')
 const managersection=require('./models/managersection')
 const customerBooking=require('./models/customerBooking')
 const noteCustomer=require('./models/noteCustomer')
+const manageremail=require('./models/manageremail')
+const restaurantsaddress=require('./models/restaurantaddress')
 const note=require('./models/notes')
 const mysql=require('mysql')
 const passport = require("passport");
@@ -64,6 +66,8 @@ const app = express()
   .use(note(connection))
   .use(noteCustomer(connection))
   .use(customerBooking(connection))
+  .use(manageremail(connection))
+  .use(restaurantsaddress(connection))
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
