@@ -1,0 +1,9 @@
+<p>{{selectedNote.restaurantName}}</p>
+<div *ngFor="let note of notes">
+  <p>{{note.description}}</p></div>
+  Enter updated information
+<form [formGroup]=updateNoteForm action="note.component.ts">
+  <input matInput #description type="text" formControlName="description">
+  <button mat-raised-button (click)="updateNote()">Save</button>
+  <button mat-raised-button (click)="deleteNoteWithId()">Delete</button>
+  </form>

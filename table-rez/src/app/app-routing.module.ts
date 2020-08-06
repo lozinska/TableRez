@@ -13,6 +13,8 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AddMenusectionComponent } from './add-menusection/add-menusection.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ManagerComponent } from './manager/manager.component';
+import {CustomerPageComponent} from './customer-page/customer-page.component';
+import { NoteComponent } from './note/note.component';
 
 const routes: Routes = [
 {path:'', component:RestaurantCardsComponent},
@@ -27,6 +29,8 @@ const routes: Routes = [
 {path: 'addSection', component: AddMenusectionComponent },
 {path: 'addItem', component: AddItemComponent },
 {path: 'managerRes', component: ManagerComponent},
+{path: 'customerPage', component: CustomerPageComponent},
+{path:'singlenote',component:NoteComponent},
 {path: '**', redirectTo: '' }
 ];
 

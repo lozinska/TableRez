@@ -20,8 +20,12 @@ const dateTableDate=require('./models/dateTableDate')
 const restaurantitem=require('./models/restaurantitem')
 const manageritem=require('./models/manageritem')
 const managersection=require('./models/managersection')
+const customerBooking=require('./models/customerBooking')
+const noteCustomer=require('./models/noteCustomer')
+const note=require('./models/notes')
 const mysql=require('mysql')
 const passport = require("passport");
+var methodOverride = require('method-override')
 const connection = mysql.createConnection({
  host     : 'mymysql.senecacollege.ca',
   user     : 'prj566_201a04',
@@ -33,7 +37,7 @@ connection.connect();
 const port = process.env.PORT || 8080;
 
 const app = express()
-
+.use(methodOverride('X-HTTP-Method-Override'))
   .use(cors())
   .use(bodyParser.json())
   .use(express.json())
@@ -57,6 +61,10 @@ const app = express()
   .use(restaurantitem(connection))
   .use(manageritem(connection))
   .use(managersection(connection))
+  .use(note(connection))
+  .use(noteCustomer(connection))
+  .use(customerBooking(connection))
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
+//connection.end();
