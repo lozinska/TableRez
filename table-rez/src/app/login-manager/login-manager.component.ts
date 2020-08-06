@@ -15,7 +15,7 @@ export class LoginManagerComponent implements OnInit {
     private formSubmitAttempt: boolean;
     private returnUrl: string;
     user:any;
-  
+
     constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class LoginManagerComponent implements OnInit {
       private http:HttpClient,
       private managerService: ManagerService
     ) { }
-  
+
      ngOnInit() {
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.email],
@@ -31,11 +31,11 @@ export class LoginManagerComponent implements OnInit {
       });
     //  this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
     }
-  
+
    login(){
-  
+
   this.managerService.loginManager(this.loginForm.get('email').value, this.loginForm.get('password').value)
     .then(()=>this.router.navigate(['/']))
-  
+
   };
   }
