@@ -68,7 +68,7 @@ import { NoteComponent } from './note/note.component';
     ManagerComponent,
 
     LoginOwnerComponent,
-    RegisterOwnerComponent
+    RegisterOwnerComponent,
 
     CustomerPageComponent,
     NoteComponent
