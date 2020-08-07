@@ -25,7 +25,7 @@ export class ManagerService {
     return this.request('GET', `${environment.serverUrl}/manager`);
   }
   getManagerbyEmail(email:string){
-    return this.request('GET', `${environment.serverUrl}/manager/${email}`);
+    return this.request('GET', `${environment.serverUrl}/manageremail/${email}`);
   }
   getManagerbySectionEmail(email:string){
     return this.request('GET', `${environment.serverUrl}/managersection/${email}`);
@@ -46,5 +46,3 @@ export class ManagerService {
     return this.request('POST', `${environment.serverUrl}/login-manager`,{email,password});
   }
 }
-
-
