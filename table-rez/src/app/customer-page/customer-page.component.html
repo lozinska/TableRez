@@ -6,6 +6,54 @@
 <button class="user-button" mat-raised-button (click)=displayNote()>Personal Notes</button>
 </div>
 <div [hidden]="personalInfo">
+  <div>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-label>First name</mat-label>
+         <p>{{selectedUser.fName}}</p>
+
+          <mat-label>Last Name</mat-label>
+          <p>
+            {{selectedUser.lName}}
+          </p>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contact Information
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>map</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-label >Phone</mat-label>
+          <p>{{selectedUser.phone}}</p>
+          <mat-label >Email</mat-label>
+          <p>
+            {{selectedUser.email}}
+          </p>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">End</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div>
+  <br>
+  <h2>Update personal Information</h2>
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup"[editable]=true>
       <form [formGroup]="firstFormGroup">
@@ -32,7 +80,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" [placeholder]="selectedUser.email" required>
+          <input matInput formControlName="email" placeholder="email" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -104,17 +152,19 @@
 </div>
 <div [hidden]="showNote">
   <button class="note-button" mat-raised-button color='primary'(click)=displayRestaurants()>Add Note</button>
-  <div [hidden]="restaurantName" class="restaurantList" *ngFor="let book of customerFutureBookings">
-    <ul>
-      <li (click)="addInfo()">{{book.rest_name}}</li>
+  <div [hidden]="restaurantName" class="restaurantList" *ngFor="let name of restaurantArray; let i=index">
+
+      <p (click)="addInfo()" style="margin-left: 5rem;">{{name}}</p>
       <div [hidden]="addNoteSwitch">
-      <form [formGroup]=createNoteForm action="customer-page.component.ts">
-        <input matInput #description type="text" placeholder="Restaurant Description" formControlName="description">
-        <button mat-raised-button (click)="addNote()">Save</button>
-        </form>
-      </div>
-    </ul>
+        <mat-form-field style="margin-left: 5rem" [formGroup]=createNoteForm action="note.component.ts" appearance="fill">
+          <mat-label>Enter Description</mat-label>
+        <textarea matInput #description type="text" placeholder="Restaurant Description" formControlName="description"></textarea>
+      </mat-form-field>
+        <button style="margin-left: 5rem;" mat-raised-button color='primary' (click)="addNote(name)">Save</button>
+    </div>
   </div>
+
+<div>
   <div *ngFor="let note of notes">
     <mat-card class="note-card" style="max-width: 400px; float: left; margin-left: 5rem;">
       <mat-card-header>
@@ -132,5 +182,5 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
+</div>
 </div>

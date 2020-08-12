@@ -33,4 +33,7 @@ export class RestaurantService {
   updateRestaurant(restaurant) {
     return this.request('PUT', `${environment.serverUrl}/restaurant/${restaurant.restaurantID}`, restaurant);
   }
+ /* getRestaurantByName(name:string){
+    return this.request('GET',`${environment.serverUrl}/restaurant/${name}`);
+  }*/
 }

@@ -32,9 +32,7 @@ export class CustomerService {
   loginUser(email,password){
     return this.request('POST', `${environment.serverUrl}/login`,{email,password});
   }
-  getUserByEmail(email){
-    return this.request('GET', `${environment.serverUrl}/user/${email}`,email);
-  }
+
   getUserById(id){
     return this.request('GET', `${environment.serverUrl}/user/${id}`,id);
   }

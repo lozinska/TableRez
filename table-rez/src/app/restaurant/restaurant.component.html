@@ -26,8 +26,10 @@
 </div>
 <div [hidden]="reserve" class="reservedescription" style="font-size: x-large;text-align:center;"></div>
 <br>
+<h1>Next available time</h1>
   <div *ngFor="let i of rangeReverse;">
     <div class="reservation-button">
+
 <button mat-raised-button color="primary"  (click)="navigate(selectedRestaurant.id,i)">
  {{i}}
 </button>

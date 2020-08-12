@@ -16,7 +16,7 @@ export class LoginOwnerComponent implements OnInit {
     private formSubmitAttempt: boolean;
     private returnUrl: string;
     user:any;
-  
+
     constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class LoginOwnerComponent implements OnInit {
       private http:HttpClient,
       private ownerService: OwnerService
     ) { }
-  
+
      ngOnInit() {
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.email],
@@ -32,12 +32,11 @@ export class LoginOwnerComponent implements OnInit {
       });
     //  this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
     }
-  
+
    loginOwner(){
-  
+
   this.ownerService.loginOwner(this.loginForm.get('email').value, this.loginForm.get('password').value)
-    .then(()=>this.router.navigate(['/owner']))
-  
+    .then(()=>this.router.navigate(['/']))
+
   };
   }
-  

@@ -10,7 +10,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import{NoteService} from '../services/note.service';
 import { response } from 'express';
 import { element } from 'protractor';
-
+import{RestNameService} from '../services/rest-name.service';
+import{ UserByEmailService} from '../services/user-by-email.service';
 @Component({
   selector: 'app-customer-page',
   templateUrl: './customer-page.component.html',
@@ -22,6 +23,7 @@ firstFormGroup: FormGroup;
 secondFormGroup:FormGroup;
 createNoteForm:FormGroup;
 personalInfo=true;
+showCardNote=true;
 booking=true;
 showNote=true;
 updateNoteSwitch=true;
@@ -31,9 +33,22 @@ addNoteSwitch=true;
 step = 0;
 restaurantName=true;
 restaurantArray: any[]=[];
-  setStep(index: number) {
-    this.step = index;
-  }
+restaurantIDArray: any[]=[];
+restId;
+
+setStep(index: number) {
+  this.step = index;
+}
+
+nextStep() {
+  this.step++;
+}
+
+prevStep() {
+  this.step--;
+}
+
+
 selectedUser={id:null,email:'',fName:'',lName:'',phone:''}
 @Input() users: any[]=[];
 @Input() customerFutureBookings: any[]=[];
@@ -44,12 +59,14 @@ selectedUser={id:null,email:'',fName:'',lName:'',phone:''}
     private formBuilder:FormBuilder,
     private route: ActivatedRoute,
     private userServices: CustomerService,
+    private userByEmailServices: UserByEmailService,
     private restaurantServices:RestaurantService,
+    private restaurantByNameServices:RestNameService,
     private noteServices: NoteService,
     private customerBookingServices:CustomerBookingService ) {
     this.route.queryParams.subscribe(params=>{
 
-      //this.selectedUser.email=params.user_email;
+     // this.selectedUser.email=params.user_email;
       this.selectedUser.id=params.user_id;
      })
      this.currentTime=new Date();
@@ -64,24 +81,36 @@ selectedUser={id:null,email:'',fName:'',lName:'',phone:''}
       firstName:['',Validators.required],
       lastName:['',Validators.required],
       phone:['',Validators.required],
-      email:['',Validators.required],
+      email:['',Validators.email],
     });
 
     this.createNoteForm=this.formBuilder.group({
       description:['']});
 
   }
-displayUserInfo(id){
-this.userServices.getUserById(id).then((response:any)=>{
+/*displayUserInfo(email){
+this.userByEmailServices.getUserByEmail(email).then((response:any)=>{
   this.users=response.map((user)=>{
     this.selectedUser.fName=user.firstName;
     this.selectedUser.lName=user.lastName;
     this.selectedUser.phone=user.phone;
-    this.selectedUser.email=user.email;
+    //this.selectedUser.email=user.email;
     return user;
   })
 })
 }
+*/
+displayUserInfo(id){
+  this.userServices.getUserById(id).then((response:any)=>{
+    this.users=response.map((user)=>{
+      this.selectedUser.fName=user.firstName;
+      this.selectedUser.lName=user.lastName;
+      this.selectedUser.phone=user.phone;
+      this.selectedUser.email=user.email;
+      return user;
+    })
+  })
+  }
 
 checkTime(){
   if(this.currentTime.getHours()<12){
@@ -107,11 +136,22 @@ saveChanges(){
     email: this.firstFormGroup.get('email').value,
 
 };
-
+if(updatedUser.firstName==''){
+  updatedUser.firstName=this.selectedUser.fName
+}
+if(updatedUser.email==''){
+  updatedUser.email=this.selectedUser.email
+}
+if(updatedUser.phone==''){
+  updatedUser.phone=this.selectedUser.phone
+}
+if(updatedUser.lastName==''){
+  updatedUser.lastName=this.selectedUser.lName
+}
 this.userServices.updateUser(this.selectedUser.id,updatedUser).then((response:any)=>{
   console.log(JSON.stringify(updatedUser))
 })
-
+window.location.reload();
 }
 checkPreviousBookings(){
   this.personalInfo=true;
@@ -139,12 +179,19 @@ displayNote(){
     })
   })
 }
-addNote(){
+addNote(name){
+  this.restaurantByNameServices.getRestaurantByName(name).then((response:any)=>{
+    this.restaurants=response.map((restaurant)=>{
+      this.restId=restaurant.restaurantID;
+      return restaurant;
+    })
+  })
 
   const newNote = {
     description: this.createNoteForm.get('description').value,
     customerID:this.selectedUser.id,
-    restaurantID:5
+    restaurantID:1
+   // restaurantID:5
 };
 console.log(JSON.stringify(newNote))
 this.noteServices.addNote(newNote);
@@ -157,9 +204,14 @@ displayRestaurants(){
   this.restaurantName=!this.restaurantName;
   this.customerBookingServices.getHistory(this.selectedUser.id).then((response:any)=>{
     this.customerFutureBookings=response.map((book)=>{
+    if(this.restaurantArray.indexOf(book.rest_name)===-1){
     this.restaurantArray.push(book.rest_name)
+    this.restaurantIDArray.push(book.restaurantID);
+    }
       return book;
     })
+    console.log(JSON.stringify(this.restaurantIDArray))
+    console.log(JSON.stringify(this.restaurantArray))
   })
 }
 
@@ -173,4 +225,5 @@ navigate(id,name){
   }
   this.router.navigate(['singlenote'],navigationExtras);
 }
+
 }
