@@ -20,7 +20,7 @@ export class NoteComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
     this.selectedNote.id=params.note_id,
     this.selectedNote.restaurantName=params.rest_name,
-this.selectedNote.customerID=params.user_id
+    this.selectedNote.customerID=params.user_id
      })
    }
 
@@ -48,6 +48,7 @@ this.noteServices.updateNote(this.selectedNote.id,updatedNote)
   this._location.back();
 })
 }
+
 deleteNoteWithId(){
   this.noteServices.deleteNote(this.selectedNote.id).then(()=>{
     console.log("Note deleted");

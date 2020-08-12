@@ -91,6 +91,7 @@ this.menuService.getMenu(this.selectedRestaurant.id).then((response:any)=>{
       })
     })
       this.isShow=!this.isShow;
+      this.reserve=true;
     }
 
     displayItem(id){
@@ -125,11 +126,14 @@ this.menuService.getMenu(this.selectedRestaurant.id).then((response:any)=>{
       }
       for(let i=day.getHours();i<24;i++){
         console.log(day)
+        if(this.range.indexOf(i)===-1){
         this.range.push(day.getHours()+':'+day.getMinutes());
         day.setMinutes(day.getMinutes()+30)
        }
+      }
        this.rangeReverse=this.range.slice().reverse();
        console.log(JSON.stringify(this.rangeReverse))
+       this.isShow=true;
     }
     navigate(id,bookTime){
       let navigationExtras: NavigationExtras={

@@ -16,7 +16,21 @@ const router = express.Router();
       }
     );
   });
-
+  /*router.get('/restaurant/:name', function (req, res, next) {
+    db.query(
+        'SELECT * FROM restaurant WHERE name=?',
+        [req.params.name],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+  */
   router.post('/restaurant', function (req, res, next) {
     db.query(
         'INSERT INTO restaurant (name, email,addressID, ownerID, managerID,restaurant_desc, restaurant_image) VALUES (?,?,?,?,?,?,?)',

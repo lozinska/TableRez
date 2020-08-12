@@ -68,21 +68,7 @@ function createUser(db) {
     );
   });
 
-  router.get('/user/:email', function (req, res, next) {
-    db.query(
-        'SELECT * FROM customer WHERE email=?',
-       [req.params.email],
-      (error, results) => {
-        if (error) {
-          console.log(error);
-          res.status(500).json({status: 'error'});
-        } else {
-          res.status(200).json(results);
-        }
-      }
-    );
-  });
-
+  
   router.put('/user/:id', function (req, res, next) {
     db.query(
       'UPDATE customer SET firstName=?, lastName=?, phone=?, email=? WHERE userID=?',
