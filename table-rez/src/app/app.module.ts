@@ -46,7 +46,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NoteComponent } from './note/note.component';
-import { DialogComponent } from './dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
@@ -72,8 +71,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     RegisterOwnerComponent,
 
     CustomerPageComponent,
-    NoteComponent,
-    DialogComponent
+    NoteComponent
 
   ],
   imports: [
