@@ -12,6 +12,8 @@ import{UserByEmailService} from '../services/user-by-email.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+ check=true;
+ main=false;
   customer;
   id;
   loginForm:FormGroup;
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   private formSubmitAttempt: boolean;
   private returnUrl: string;
   user:any;
-  selectedUser={id:'',firstName:'',lastName:''}
+  selectedUser={id:null,firstName:'',lastName:''}
 @Input() usersByEmail:any[]=[];
   constructor(
     private formBuilder: FormBuilder,
@@ -35,32 +37,37 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.email],
       password: ['', Validators.required]
     });
+
   //  this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
-
- login(id){
-this.customerService.loginUser(this.loginForm.get('email').value, this.loginForm.get('password').value)
+storeInfo(){
+  this.check=!this.check
+  this.main=!this.main
+  this.customerService.loginUser(this.loginForm.get('email').value, this.loginForm.get('password').value)
 this.userByEmailService.getUserByEmail(this.loginForm.get('email').value)
-/*.then((response:any)=>{
+.then((response:any)=>{
   console.log(this.loginForm.get('email').value)
  this.usersByEmail=response.map((loginUser)=>{
-
+  // if(this.custArray.indexOf(loginUser.userID))
+//this.custArray.push(loginUser.userID)
    this.selectedUser.id=loginUser.userID;
-
    return loginUser;
  })
 
-})*/
-.then( (res:Response) => {
+})
+}
+ login(id){
+
+/*.then( (res:Response) => {
   let body=res
   this.customer=body;
   return body ||{};
-});
-console.log(JSON.stringify(this.customer))
+});*/
+
   let navigationExtras: NavigationExtras={
     queryParams:{
-  //  user_email:this.loginForm.get('email').value,
-    user_id:1
+    //user_email:this.loginForm.get('email').value,
+    user_id:id
     }
   }
 

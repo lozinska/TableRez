@@ -65,8 +65,8 @@ export class ReservationComponent implements OnInit {
     });
 this.displayBookingForm();
 }
-   createBooking() {
-    this.details=!this.details
+   createBooking(id) {
+
 
 var date=new Date();
 
@@ -74,6 +74,7 @@ var date=new Date();
     restaurantID: this.selectedRestaurant.id,
     wasConsumed:'No',
     time:(this.reservationForm.get('calendarDate').value).toISOString().slice(0,19).replace('T',' '),
+    customerID:id
     //email:this.reservationForm.get('email').value
   };
   this.bookingService.addBooking(newBooking);
@@ -110,6 +111,15 @@ console.log(date.toISOString().slice(0,19).replace('T',' '));
           this.restaurantArray.push(restaurant)
         }
         return restaurant
+      })
+    })
+  }
+  checkCustomer(email){
+    this.details=!this.details
+    this.userByEmailService.getUserByEmail(email).then((response:any)=>{
+      this.userByEmail=response.map((user)=>{
+      this.selectedUser.id=user.userID
+      return user;
       })
     })
   }
