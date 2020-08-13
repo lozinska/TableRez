@@ -1,5 +1,5 @@
 <br>
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: center;" [hidden]="main">
 <mat-card>
   <mat-card-content>
     <form [formGroup]="loginForm" action="login.component.ts">
@@ -24,9 +24,21 @@
       </mat-form-field>
     </p>
     <p align="center">
-      <button mat-raised-button color="primary"(click)="login(selectedUser.id)">Login</button>
+      <button mat-raised-button color="primary"(click)="storeInfo()">Login</button>
     </p>
+
     </form>
   </mat-card-content>
 </mat-card>
+</div>
+<div [hidden]="check">
+  <mat-card>
+    <mat-card-header>
+      Proceed to the personal page
+    </mat-card-header>
+  <p align="center">
+  <button mat-raised-button color="primary"(click)="login(selectedUser.id)">Go...</button>
+</p>
+</mat-card>
+
 </div>

@@ -154,13 +154,13 @@
   <button class="note-button" mat-raised-button color='primary'(click)=displayRestaurants()>Add Note</button>
   <div [hidden]="restaurantName" class="restaurantList" *ngFor="let name of restaurantArray; let i=index">
 
-      <p (click)="addInfo()" style="margin-left: 5rem;">{{name}}</p>
+      <p (click)="addInfo(name)" style="margin-left: 5rem;">{{name}}</p>
       <div [hidden]="addNoteSwitch">
         <mat-form-field style="margin-left: 5rem" [formGroup]=createNoteForm action="note.component.ts" appearance="fill">
           <mat-label>Enter Description</mat-label>
         <textarea matInput #description type="text" placeholder="Restaurant Description" formControlName="description"></textarea>
       </mat-form-field>
-        <button style="margin-left: 5rem;" mat-raised-button color='primary' (click)="addNote(name)">Save</button>
+        <button style="margin-left: 5rem;" mat-raised-button color='primary' (click)="addNote(selectedRestaurant.id)">Save</button>
     </div>
   </div>
 

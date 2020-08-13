@@ -35,7 +35,7 @@
 </form>
 
 <div>
-  <button mat-raised-button color="primary" (click)="createBooking()">Create reservation</button>
+  <button mat-raised-button color="primary" (click)="checkCustomer(email.value)">Create reservation</button>
 </div>
 
 
@@ -52,7 +52,7 @@ Contact email address:&nbsp;
 {{email.value}}<br>
 </mat-card-content>
 <mat-card-actions>
-<button mat-raised-button color="primary" routerLink="/">Ok</button>
+<button mat-raised-button color="primary" (click)="createBooking(selectedUser.id)" routerLink="/">Ok</button>
 </mat-card-actions>
 </mat-card>
 </div>

@@ -50,6 +50,7 @@ prevStep() {
 
 
 selectedUser={id:null,email:'',fName:'',lName:'',phone:''}
+selectedRestaurant={id:null,description:''}
 @Input() users: any[]=[];
 @Input() customerFutureBookings: any[]=[];
 @Input() restaurants: any[]=[];
@@ -73,9 +74,7 @@ selectedUser={id:null,email:'',fName:'',lName:'',phone:''}
   }
 
   ngOnInit(): void {
-
     this.displayUserInfo(this.selectedUser.id);
-    console.log(this.currentTime)
     this.checkTime();
     this.firstFormGroup=this.formBuilder.group({
       firstName:['',Validators.required],
@@ -101,6 +100,7 @@ this.userByEmailServices.getUserByEmail(email).then((response:any)=>{
 }
 */
 displayUserInfo(id){
+  console.log(id)
   this.userServices.getUserById(id).then((response:any)=>{
     this.users=response.map((user)=>{
       this.selectedUser.fName=user.firstName;
@@ -179,26 +179,26 @@ displayNote(){
     })
   })
 }
-addNote(name){
-  this.restaurantByNameServices.getRestaurantByName(name).then((response:any)=>{
-    this.restaurants=response.map((restaurant)=>{
-      this.restId=restaurant.restaurantID;
-      return restaurant;
-    })
-  })
+addNote(id){
 
   const newNote = {
     description: this.createNoteForm.get('description').value,
     customerID:this.selectedUser.id,
-    restaurantID:1
+    restaurantID:id
    // restaurantID:5
 };
 console.log(JSON.stringify(newNote))
 this.noteServices.addNote(newNote);
 this.addNoteSwitch=true;
 }
-addInfo(){
+addInfo(name){
   this.addNoteSwitch=!this.addNoteSwitch
+  this.restaurantByNameServices.getRestaurantByName(name).then((response:any)=>{
+    this.restaurants=response.map((restaurant)=>{
+      this.selectedRestaurant.id=restaurant.restaurantID;
+      return restaurant;
+    })
+  })
 }
 displayRestaurants(){
   this.restaurantName=!this.restaurantName;
